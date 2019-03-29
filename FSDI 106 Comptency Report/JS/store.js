@@ -19,20 +19,21 @@ Main Functionality:
 //store all the items in the array; need to store and OBJECT
 var catalog =[];
 var uniqueId = 0; //counter
+//var url = "http://restclass.azurewebsites.net";
 
-var url = "localhost";
+var url = "http://localhost:8080";
 
 //object constructor: used to create instances
 function Item(name,desc,price,image,category){
-    this.id = uniqueId;//provide info for ID
+    this.user = 'Reggie';
     this.name =name; //don't use hardcoaded values
     this.desc = desc;
     this.price = price;
     this.image = image;
     this.category = category; 
 
-    uniqueId += 1; //to change the ID once its used; increases the value by one 
 
+ 
     //can add functions and behaviors
 }
 
@@ -72,7 +73,8 @@ console.log('value', isDataValid);
     console.log(theItem);
 
     //add the item to the array
-    catalog.push(theItem);
+    sendToServer(theItem);
+
     //clear the form
     $("#txtName").val('');
     $("#txtDesc").val('');
@@ -88,6 +90,23 @@ console.log('value', isDataValid);
     setTimeout(function(){
         $("#alert-saved").addClass('hidden');
     }, 3000); 
+
+function sendToServer(item){
+
+    var theString = JSON.stringify(item);
+    $.ajax({
+        url:  url + '/API/points',
+        type: "POST",
+        data: theString,
+        contentType: 'application/json',
+        success: function (res){
+            console.log('Done!', res);
+        },
+        error: function(errorDetail){
+            console.error('BAD',errorDetail);
+        }
+    });
+}
 
 //auto executed when browser finished rendering everything
 function init(){

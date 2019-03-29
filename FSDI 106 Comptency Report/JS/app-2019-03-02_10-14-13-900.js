@@ -2,8 +2,7 @@
 //put here distnct category
 
 var categories = []; //monitor should appear only once 
-var url = "http://localhost:8080";
-var DB = [];//array to contain my items
+
 //loop over
 //ask if it has the 
 
@@ -87,63 +86,23 @@ function search(){
 //display name and price
 // var pNumber = p * 1; 
 
-
+var price = []; 
 function lowerThan100(){
-    // for each item
-    for(var i=0; i<DB.length; i++){
-        var item = DB[i];
-        //ask if the price is lower or equal to 100
-        if(item.price <= 100){
-            //if so, print the name and price on the console
-            console.log(item.name + " - $" + item.price);
+    for(var k=0; i<DB.length; k++){
+        //display the item
+        var theItem = DB[k];
+        if(
+            theItem.price > 100){
+        displayItem(item);
         }
+        
     }
 }
+console.log(lowerThan100);
+function greaterThan100(){
 
-
-function lowerThan100(){
-    // for each item
-    for(var i=0; i<DB.length; i++){
-        var item = DB[i];
-        //ask if the price is lower or equal to 100
-        if(item.price <= 100){
-            //if so, print the name and price on the console
-            console.log(item.name + " - $" + item.price);
-        }
-    }
-}
-
-// get the items catalog from the server
-
-function getCatalog() {
-    //var theObjects = JSON.parse(theStringHere)
-    $.ajax({    
-        url:  url + '/API/points',
-        type: 'GET',
-        //data: theObjects,
-        //contentType: 'application/json',
-    success: function (res){
-        // loop of res array
-        for(var i=0; i<res.length; i++){
-            var item = res[i];
-        // ask if the item.user == 'yourname'
-        if(item.user == 'Reggie'){
-        // push the item into DB array
-            DB.push(item);
-            }
-        }   
-        displayCatalog();    
-    },
-    error: function (errorDetail){
-    console.error('Has been an error', errorDetail);
-    alert('communication error');
-        }
-    });
 
 }
-
-
-
 function init(){
     //hook events
     //1 = click on button
@@ -157,36 +116,8 @@ function init(){
     //initialize stuff
 
     displayCatalog();
-    getCatalog();
-//test function
 
-    //testAjax();
 
 }
-
-//this is just a test for ajax calls
-
-/* AJAX: asynchronous javascript xml
-a communications protocol to send and received data to/from backed without doing a hard refresh on the client page
-*/
-
-function testAjax(){
-    var endPoint = url + '/API/test';
-    $.ajax({
-        url: endPoint, //can modify
-        type:'GET', //can modify
-    success: function (response, status){
-    console.log('All good', response);
-    console.log('status', status);
-},
-    error: function (response, status){
-    console.log('ERROR***', response)
-    console.log('status', status);
-        }
-    });
-
-}
-
-
 
 window.onload = init;

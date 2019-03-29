@@ -46,4 +46,20 @@ var DB = [
         image: 'https://mediaserver.goepson.com/ImConvServlet/imconv/542041b37c7ea56d2f0bf609154c32ad9c53cfdd/original?use=banner&assetDescr=product-categories-homepage-carousel-printers-et2750',
         category: 'Printer'
     },
+    {
+        id:245,
+        name: "Running shoe",
+        desc: "Very good shoe that you can buy",
+        price: '57.22',
+        image: '',
+        category: 'Shoe'
+    },
+    {
+        id:887,
+        name: "Watch",
+        desc: "Very good watch that you can buy",
+        price: '68.34',
+        image: '',
+        category: 'Watch'
+    },
 ];
